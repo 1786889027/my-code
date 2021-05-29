@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 声明对象
+        const school = {
+            name: '尚硅谷',
+            cities: ['北京', '上海', '深圳'],
+            xueke: ['前段', '后端', '大数据', '运维']
+        }
+        // 获取对象所有的键
+        console.log(Object.keys(school));
+        //获取对象所有的值
+        console.log(Object.values(school));
+        //获取键值对
+        console.log(Object.entries(school));
+        // 三个返回都是数组   最后entries方法返回一个二维数组
+        const m = new Map(Object.entries(school))
+        console.log(m);
+        console.log(m.get('name'));
+        //对象属性的描述对象
+        console.log(Object.getOwnPropertyDescriptors(school));
+
+        const obj = Object.create(null, { //传入null 则为此对象的原型对象   Object.getOwnPropertyDescriptors读取的是后面的描述对象
+            value: '尚硅谷',
+            Writable: true,
+            configurable: true,
+            enumerable: true
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>传统方法</button>
+    <button>方法监听注册</button>
+    <button>ie9 attach</button>
+    <script>
+        var btns = document.querySelectorAll('button')
+        //传统方法多个onclick时会覆盖旧的方法
+        btns[0].onclick = function () {
+            alert('传统方法')
+        }
+        //监听器能注册多个,也就是能触发多个事件
+        btns[1].addEventListener('click', function () {
+            alert('方法监听注册事件')
+        })
+        btns[2].attachEvent('onclick', function () {
+            alert('ie9之前的方法 不建议使用') //ie特有!其他都不支持 别用吧!
+        })
+    </script>
+</body>
+
+</html>

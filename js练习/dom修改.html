@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            display: block;
+            transform: scale(0.4);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <button id="xzq">薛之谦</button> -->
+    <!-- <button id="zjl">周杰伦</button>
+    <img src="./media/xzq.jpg" title="薛之谦"> -->
+    <div>
+
+    </div>
+    <script>
+        // var xzq = document.getElementById('xzq');
+        // var zjl = document.getElementById('zjl');
+        // var img = document.querySelector('img');
+        // xzq.onclick = function () {
+        //     img.src = "./media/xzq.jpg";
+        //     img.title = "薛之谦";
+        // }
+        // zjl.onclick = function () {
+        //     img.src = "./media/zjl.jpg";
+        //     img.title = "周杰伦";
+        // }
+        var div = document.querySelector('div');
+        var date = new Date();
+        var h = date.getHours();
+        if (h < 12) {
+            div.innerHTML = '上午好,美好的一天开始了';
+        } else if (h < 18) {
+            div.innerHTML = '下午好,代码写完了吗';
+        } else {
+            div.innerHTML = '晚上好,美好的一天结束了';
+        }
+    </script>
+</body>
+
+</html>

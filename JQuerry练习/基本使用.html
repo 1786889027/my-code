@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../lib/jquery-3.6.0.min.js"></script>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+
+        .current {
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- // $('div').hide();
+        //等dom元素全部加载好再执行 相当于window.onload方法
+        // $(document).ready(function () {
+        //     $('div').hide();
+        // })
+        // 简写形式 $符号就是JQuery得意思 也是它得顶级对象 相当于window对象
+        // $(function () {
+        //     $('div').hide();
+        // }) -->
+
+    <div></div>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <div class="father">
+        <p></p>
+        <div class="son">儿子</div>
+    </div>
+    <script>
+        // $('div') $符号括号里面加选择器名字 css怎么写这里怎么写
+        $('div').css('background', 'red')
+        $('ul li:first').css('color', 'pink') //选择第一个
+        $('ul li:eq(2)').css('color', 'pink') //选择第三个 从0开始 或者$('ul li').eq(index)
+        $('ul li:odd').css('color', 'skyblue') //奇数 even时偶数
+        console.log($('.son').parent); //查找父亲
+        console.log($('.father').children('p').css('color', 'red')); //children找亲儿子  father > p
+        console.log($('.father').find('p').css('color', 'red')); //find找所有子类
+        console.log($('p').siblings('div')); //找除自己以外得所有亲兄弟元素节点
+        console.log($('p').nextAll('div')); //找自己之后的所有同辈元素
+        console.log($('.son').prevAll('p')); // 找自己之前的所有同辈元素节点 
+        // 添加类
+        $('.son').addClass('current') //可以不用加.
+        $('.son').removeClass('current') //移除类名
+        $('.son').toggleClass('current') //有就删 没有就加 
+        //类操作不会对原类名更改 只是在此基础上追加操作 和原生dom类名操作会覆盖原来类名
+    </script>
+</body>
+
+</html>

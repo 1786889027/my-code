@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var name = "The Window";
+        var obj = {
+            name: 'MyObject',
+            getNameFunc: function () {
+                return function () {
+                    return this.name
+                }
+            }
+        }
+        console.log(obj.getNameFunc()()); //The Window
+        //如果里面加了一个that = this 我想你应该知道了 不知道就说明你自己蠢
+    </script>
+</body>
+
+</html>

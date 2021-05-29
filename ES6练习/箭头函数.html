@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //你用都用了那么多次了
+        // 讲讲别得
+        // 如果() => {} {}里面只有一个retun 那么可以省略{}和return  如果参数只有一个那么（）也可以省略
+        // 箭头函数中没有自己得this 他的this是上下文中得this
+        // 面试题
+        var obj = {
+            age: 20,
+            say: () => console.log(this.age)
+        }
+        obj.say() //打印undefined 因为箭头函数没有this 这个this是window得 window没有age属性
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1.object.is 判断两个值是否相等
+        console.log(Object.is(120, 121)); //false
+        console.log(Object.is(120, 120)); //true
+        console.log(Object.is(NaN, NaN)); //true
+        console.log(NaN === NaN); //false
+
+        // 2.对象的合并 Object.assign
+        const config1 = {
+            host: 'localhost',
+            port: 3306,
+            name: 'root',
+            pass: 'root'
+        }
+        const config2 = {
+            host: 'http:atguigu.com',
+            port: 33060,
+            name: 'atguigu.com',
+            pass: 'iloveyou'
+        }
+        console.log(Object.assign(config1, config2)); // 后面有的会覆盖前面有的 如果前面有后面没有则不影响 配置合并或者浅拷贝
+
+        //3.Object.setPrototypeOf 设置原型对象 Object.getPrototypeof 获取原型对象
+        const school = {
+            name: '尚硅谷'
+        }
+        const citis = {
+            xiaoqu: ['北京', '上海', '深圳']
+        }
+        console.log(school);
+        Object.setPrototypeOf(school, citis); //将school的__proto__设置成citis
+        console.log(Object.getPrototypeOf(school)); //获取原型对象
+        console.log(school);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            border: 1px solid #ccc;
+        }
+
+        .mask {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            top: 0;
+            left: 0;
+            background-color: #fede4e;
+            opacity: .5;
+            border: 1px solid #ccc;
+            cursor: move;
+        }
+
+        .bg {
+            display: none;
+            position: absolute;
+            left: 410px;
+            top: 0;
+            width: 500px;
+            height: 500px;
+            background-color: pink;
+            z-index: 9999;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <p>伟大fawn flak发布咖喱棒发俄方vu阿格里巴</p>
+        <div class="mask"></div>
+    </div>
+    <div class="bg"></div>
+    <script>
+        var box = document.querySelector('.box')
+        var mask = document.querySelector('.mask')
+        var bg = document.querySelector('.bg')
+        box.addEventListener('mouseover', function () {
+            mask.style.display = 'block'
+            bg.style.display = 'block'
+        })
+        box.addEventListener('mouseout', function () {
+            mask.style.display = 'none'
+            bg.style.display = 'none'
+        })
+        box.addEventListener('mousemove', function (e) {
+            var x = e.pageX - this.offsetLeft
+            var y = e.pageY - this.offsetTop
+            var maskX = x - mask.offsetWidth / 2
+            var maskY = y - mask.offsetHeight / 2
+            var maskMax = box.offsetWidth - mask.offsetWidth
+            if (maskX <= 0) maskX = 0;
+            if (maskY <= 0) maskY = 0;
+            if (maskX >= maskMax) maskX = maskMax
+            if (maskY >= maskMax) maskY = maskMax
+            mask.style.left = maskX + 'px' //减去黄色盒子的一半保证鼠标在中间
+            mask.style.top = maskY + 'px'
+            var text = box.querySelector('p')
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../lib/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+
+    <script>
+        var targetObj = {};
+        var obj = {
+            id: 1,
+            name: 'andy'
+        }
+        $.extend(targetObj, obj) //拷贝对象 会覆盖原来的数据
+        //$.extend(false,targetObj, obj1,obj2,...) //false为浅拷贝 true为深拷贝  obj1 ,obj2...合并拷贝给targetObj
+        console.log(targetObj);
+    </script>
+</body>
+
+</html>

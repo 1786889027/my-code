@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            margin: 100px auto;
+        }
+
+        .change {
+            width: 200px;
+            height: 200px;
+            background-color: purple;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <script>
+        var box = document.querySelector('div');
+        box.onclick = function () {
+            //样式较多 用css写 直接改类名就ok
+            // class是个保留字 所以js中另外起了个className来代替
+            // 通过这中方法修改会覆盖原来的类名 保留原来的类名就直接原来类名＋修改后的类名就ok
+            this.className = 'change'
+        }
+    </script>
+</body>
+
+</html>

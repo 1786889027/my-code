@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        //JS里面采取的是驼峰命名法
+        var div = document.querySelector('div');
+        div.onclick = function () {
+            //修改的样式等同于行内样式 比内嵌样式权重较高
+            this.style.backgroundColor = 'purple';
+        }
+    </script>
+</body>
+
+</html>

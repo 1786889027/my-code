@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            color: #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" value="">
+    <span>请输入用户名</span>
+    <script>
+        // 1.利用RegExp对象创建
+        var regexp = new RegExp(/123/);
+        // 2.字面量创建
+        var rg = /123/;
+        //匹配 regexObj.test(str) regexObj是正则表达式 str是要检验的字符串 是否符合规则
+        console.log(rg.test(123)); //只要包含123就是true
+        //边界符 ^以谁开始  $以谁结束
+        //[]表示一系列字符可供选择 只要有里面其中一个就行
+        ///^[a-z]$/ 表示只有a 到z 这26个里面的一个才true 
+        //  /^[a-zA-Z0-9]$/  26个字母 大小写 和数字均可 只能一个   或者你还可以在[]里面价格_-都可以
+        //  []里面出先得^表示取反 就表示不能出现这里面得东西
+        // *表示可以出现几次 类似于编译原理得文法结构 比如a* 允许a出现0次或很多次
+        //类似得+号表示可以出现1次或很多次 ? 表示0次或1次
+        //预定义类 \d 表示[0-9] \D表示[^0-9] 注意是反斜杠
+        // \w表示任意字符数字下划线 \W取反 
+        //\s匹配空格 \S 取反
+        //{n} 表示重复n次 如/^a{3}$/ 只允许3个a 如果是{3,}表示大于3次 {3,6}表示3到6次
+        // 用户名案例
+        var input = document.querySelector('input')
+        var span = document.querySelector('span')
+        var reg = /^[a-zA-Z0-9_-]{3,6}$/
+        input.onblur = function () {
+            if (reg.test(this.value)) {
+                span.innerHTML = '✔'
+                span.style.color = 'green'
+            } else {
+                span.innerHTML = '×'
+                span.style.color = 'red'
+            }
+        }
+        //正则替换 String.replace(正则表达式 ,要替换得字符)
+    </script>
+</body>
+
+</html>

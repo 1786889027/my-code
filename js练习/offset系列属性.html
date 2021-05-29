@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .father {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            margin: 100px auto;
+        }
+
+        .son {
+            width: 100px;
+            height: 100px;
+            background-color: purple;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+    <script>
+        var father = document.querySelector('.father')
+        var son = document.querySelector('.son')
+        console.log(father.offsetTop); //距离文本顶部的偏移量
+        console.log(father.offsetLeft);
+        console.log(son.offsetLeft);//以带有定位的父亲为准，如果父亲没有定位 则以body为准
+        console.log(father.offsetWidth); //包含padding+ border + width
+        console.log(father.offsetHeight);
+        console.log(son.offsetParent);//返回带有定位的父亲 父亲没定位 则以body为准
+        // 区别于style offset：1.获取的样式属性没有单位
+        //                     2.可以得到任意样式表
+        //                     3.width包含border padding width
+        //                     4.width等属性是只读的 不能改 所以获取用offset更合适
+    </script>
+
+</body>
+
+</html>

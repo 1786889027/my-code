@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //Set类似于数组 但是里面的值唯一 没有重复的值 类似于java中的Set
+        //Set本身是一个构造函数 生成Set数据结构
+        const s1 = new Set()
+        console.log(s1.size);
+        const s2 = new Set(['a', 'b'])
+        console.log(s2.size);
+        //可以用来数组去重!
+        // 比如
+        const arr = [1, 1, 2, 2, 3, 3]
+        const arr2 = [2, 3, 4, 2, 5]
+        const newarr = [...new Set(arr)]
+        console.log(newarr);
+        // 去重后求交集
+        let jiaoji = [...new Set(arr)].filter(item => {
+            let s3 = new Set(arr2)
+            if (s3.has(item)) {
+                return true
+            } else {
+                return false
+            }
+        })
+        //简写
+        // let jiaoji = [...new Set(arr)].filter(item => new Set(arr2).has(item)) //数据多时建议new 写外面 不然每次都new 一个Set
+        console.log(jiaoji);
+
+        //并集
+        let union = new Set([...arr, ...arr2])
+        console.log(union);
+
+        //差集
+        let chaji = [...new Set(arr)].filter(item => {
+            let s3 = new Set(arr2)
+            if (!s3.has(item)) {
+                return true
+            } else {
+                return false
+            }
+        })
+        console.log(chaji);
+
+        //跟java中的Set类似 有has add clear方法 delete方法 也有forEach方法
+    </script>
+</body>
+
+</html>

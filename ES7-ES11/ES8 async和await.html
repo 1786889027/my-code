@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //async 和await两种语法结合 让异步代码像同步代码一样
+        // async的返回是个promise对象, promise对象的结果由async函数执行的返回值决定
+        // await必须写async中 await右侧表达式一般为promise对象 await返回的是promise成功的值 await返回的promise失败了就抛出异常 
+        // 需要通过try...catch处理
+        async function fn() {
+            return '尚硅谷'
+            // 返回的不是promise对象 那么结果就是一个成功的promise对象
+            // 抛出错误则返回失败的promise对象
+            // throw new Error('出错啦!')
+            // 返回promise对象则由这个promise对象决定返回的promise成功与否
+        }
+        const result = fn()
+        console.log(result); //返回的也是一个promise对象 promise对象的值为尚硅谷
+
+        //连用async await  先声明一个promise对象
+        const p = new Promise((resolve, reject) => {
+            // resolve('成功的值')
+            reject('失败了')
+        })
+        async function main() {
+            try {
+                let result = await p; //返回的是p这个promise对象成功的值
+                console.log(result);
+            } catch (e) { //如果失败 则在catch语句中得到失败的结果
+                console.log(e);
+            }
+        }
+        main();
+
+        //url
+        function sendAjax(url) {
+            return new Promise((resolve, reject) => {
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', url)
+                xhr.send()
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status >= 200 && xhr.status < 300) {
+                            resolve(xhr.response)
+                        } else {
+                            reject(xhr.status)
+                        }
+                    }
+                }
+            })
+        }
+        // const resultData = sendAjax('https://api.apiopen.top/getJoke').then(value => console.log(value), reason =>
+        //     console
+        //     .log(reason))
+        async function getData() {
+            let data = await sendAjax('https://api.apiopen.top/getJoke');
+            let tianqi = await sendAjax('https://v0.yiketianqi.com/api')
+            console.log(data);
+            console.log(tianqi);
+        }
+        getData();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>点击</button>
+    <p>abc</p>
+    <div class="inner"></div>
+    <div class="creat"></div>
+    <script>
+        //doucument.write页面文档流渲染完毕后 在调用这句话会重新渲染页面
+        var btn = document.querySelector('button')
+        btn.onclick = function () {
+            document.write('<div>123</div>')
+        }
+        //innerHTML 使用的是拼接 创建多个元素时效率较高
+        var inner = document.querySelector('.inner');
+        inner.innerHTML = '<a href="#">百度</a>'
+        //createElement 效率较低 但是结构清晰
+        var creat = document.querySelector('.creat')
+        var a = document.createElement('a')
+        creat.appendChild(a)
+    </script>
+</body>
+
+</html>

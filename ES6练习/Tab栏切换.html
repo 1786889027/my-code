@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            width: 1200px;
+            margin: 100px auto;
+            text-align: center;
+        }
+
+        .tabsbox {
+            height: 400px;
+            text-align: center;
+            border: 1px solid pink;
+        }
+
+        nav {
+            overflow: hidden;
+        }
+
+        nav ul {
+            float: left;
+            height: 40px;
+
+        }
+
+        nav ul li {
+            position: relative;
+            list-style: none;
+            float: left;
+            width: 80px;
+            height: 100%;
+            line-height: 40px;
+            cursor: pointer;
+            border-right: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .tabadd {
+            height: 40px;
+            overflow: hidden;
+            line-height: 25px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .tabadd span {
+            padding: 0 4px;
+            margin-top: 5px;
+            margin-right: 5px;
+            float: right;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        .liactive {
+            border-bottom: none;
+        }
+
+        .tabcons {
+            width: 100%;
+            height: 100%;
+        }
+
+        .tabcons section {
+            display: none;
+        }
+
+        .tabcons .conactive {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .firstnav ul li span:nth-child(2) {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 15px;
+            line-height: 15px;
+            border: 1px solid red;
+        }
+
+        .firstnav ul li span input {
+            outline: none;
+            width: 60%;
+            height: 60%;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h4>JS动态添加标签页</h4>
+        <div class="tabsbox" id="tab">
+            <nav class="firstnav">
+                <ul>
+                    <li class="liactive"><span>测试1</span><span>×</span></li>
+                    <li><span>测试2</span><span>×</span></li>
+                    <li><span>测试3</span><span>×</span></li>
+                </ul>
+                <div class="tabadd">
+                    <span>+</span>
+                </div>
+            </nav>
+            <div class="tabcons">
+                <section class="conactive">测试1</section>
+                <section>测试2</section>
+                <section>测试3</section>
+            </div>
+        </div>
+    </main>
+    <script>
+        var that;
+        class Tab {
+            constructor(id) {
+                that = this;
+                this.main = document.querySelector(id)
+                this.lis = this.main.querySelectorAll('li')
+                this.sections = this.main.querySelectorAll('section')
+                this.add = this.main.querySelector('.tabadd')
+                //获取li的父元素
+                this.ul = this.main.querySelector('.firstnav ul:first-child')
+                //获取section的父元素
+                this.fsection = this.main.querySelector('.tabcons')
+                this.init()
+            }
+            init() {
+                // init初始化工作 相关元素绑定事件
+                this.getNode()
+                this.add.onclick = this.addTab
+                for (var i = 0; i < this.lis.length; i++) {
+                    this.lis[i].index = i;
+                    this.lis[i].onclick = this.toggleTab;
+                    this.removes[i].onclick = this.removeTab;
+                    this.spans[i].ondblclick = this.editTab;
+                }
+            }
+            //获取新元素节点
+            getNode() {
+                this.lis = this.main.querySelectorAll('li')
+                this.sections = this.main.querySelectorAll('section')
+                this.removes = this.main.querySelectorAll('.firstnav ul li span:nth-child(2)')
+                this.spans = this.main.querySelectorAll('.firstnav ul li span:first-child')
+            }
+            // 切换
+            toggleTab() {
+                that.clearClass()
+                this.className = 'liactive';
+                that.sections[this.index].className = 'conactive'
+            }
+
+            //排他思想
+            clearClass() {
+                for (var i = 0; i < this.lis.length; i++) {
+                    this.lis[i].className = ''
+                    this.sections[i].className = ''
+                }
+            }
+            // 添加
+            addTab() {
+                that.clearClass()
+                //创建li元素和sction元素
+                var li = '<li class="liactive"><span>新选项卡</span><span>×</span></li>'
+                var section = '<section class="conactive">测试2</section>'
+                //追加到父元素里面
+                that.ul.insertAdjacentHTML('beforeend', li)
+                that.fsection.insertAdjacentHTML('beforeend', section)
+                that.init()
+            }
+            // 删除
+            removeTab(e) {
+                e.stopPropagation() //阻止冒泡事件 ,防止触发元素的Tab切换事件
+                var index = this.parentNode.index;
+                console.log(index);
+                that.lis[index].remove();
+                that.sections[index].remove();
+                that.init()
+                //因为如果自身删除后就没有类处于选定状态所以返回上个li,如果有li选定 那么直接return 
+                if (document.querySelector('.liactive')) return
+                //删除最后一个Tab页面后 页面自动定向前一个页面
+                index--;
+                //自动调用点击事件,不需要鼠标点击
+                that.lis[index] && that.lis[index].click()
+            }
+            // 修改
+            editTab() {
+                var str = this.innerHTML;
+                // 双击禁止选中文字
+                window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+                this.innerHTML = '<input type="text" />'
+                var input = this.children[0];
+                input.value = str;
+                input.select(); //文字处于选定状态
+                //离开文本框
+                input.onblur = function () {
+                    this.parentNode.innerHTML = this.value
+                }
+                input.onkeydown = function (e) {
+                    if (e.keyCode === 13) {
+                        this.blur()
+                    }
+                }
+            }
+        }
+        new Tab('#tab')
+    </script>
+</body>
+
+</html>

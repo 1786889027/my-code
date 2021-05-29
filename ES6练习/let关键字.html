@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let关键字声明变量只有块级作用域有效 var具有全局性
+        if (true) {
+            let a = 10 //a只能在这个{}里面访问
+        }
+        // console.log(a); //a is notdefined
+        for (var i = 0; i < 10; i++) {}
+        console.log(i); //10
+        for (var j = 0; j < 10; j++) {}
+        console.log(j); //j is notdefined
+        console.log(b); //b is notdefined let声明得不会存在变量提升
+        let b = 1
+        //使用let声明得变量具有暂时性死区得特点
+        var num = 10
+        if (true) {
+            console.log(num); //报错 前面得num 不会传进来 因为这个块级已经num绑定了
+            let num = 20
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //类似于java的map 键值对集合 但是键的范围不限于字符串 各种类型的值包括对象都可以当键
+        //同意map也实现了iterator接口 所以可以使用扩展运算符 和 for in  for of遍历 map属性和方法与java里的类似
+        //size delete set get has claer等方法
+        // 声明一个map
+        let m = new Map()
+        m.set('name', '浪子彦')
+        m.set('change', function () {
+            console.log('我们可以改变你');
+        })
+        console.log(m);
+
+        let key = {
+            school: 'hnucm'
+        }
+        m.set(key, ['湖南', '长沙', '岳麓'])
+        console.log(m);
+        m.delete('name')
+        console.log(m)
+        console.log(m.get('change'));
+        for (let v of m) {
+            console.log(v);
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 400px;
+            border-bottom: 1px solid #ccc;
+            margin: 100px auto;
+        }
+
+        .box input {
+            height: 30px;
+            outline: none;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <label for="password">密码:</label>
+        <input type="text" name="password" id="pwd">
+    </div>
+    <input type="button" value="显示与隐藏" id="button">
+    <script>
+        var pwd = document.getElementById('pwd');
+        var btn = document.querySelector('#button');
+        var flag = true;
+        btn.onclick = function () {
+            console.log(flag);
+            pwd.type = flag == true ? 'text' : 'password';
+            flag = !flag;
+            console.log(pwd.type);
+        }
+    </script>
+</body>
+
+</html>

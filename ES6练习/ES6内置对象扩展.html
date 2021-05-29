@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr1 = [1, 2, 3]
+        console.log(...arr1); // 1  2  3  转变为逗号分隔的参数序列  解构数组
+        // 合并数组
+        let arr2 = [4, 5, 6]
+        let ary = [...arr1, ...arr2]
+        console.log(ary);
+        // 或者直接arr1.push(...arr2)
+        // 一般来讲
+        // document.querySelectorAll
+        // 得到的是一个伪数组
+        // 就可以[...document.querySelectorAll]
+        // 得到一个真正的数组    就可以用数组中的方法了 forEach等
+    </script>
+</body>
+
+</html>

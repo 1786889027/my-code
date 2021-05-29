@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //挺简单得
+        function fn(a, ...args) {
+            console.log(a);
+            console.log(args);
+        }
+        fn(1, 20, 30)
+        // 就是剩余得参数以数组形式保存在args中 不使用arguments了
+        const sum = (...args) => {
+            let total = 0;
+            args.forEach(item => {
+                total += item;
+            })
+            return total
+        }
+        console.log(sum(10));
+        console.log(sum(10, 20));
+        console.log(sum(10, 20, 30));
+        let arr = [10, 20, 30]
+        let [a, ...args] = arr //这样args就是一个数组保存了剩余的值了
+    </script>
+</body>
+
+</html>

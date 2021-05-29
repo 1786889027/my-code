@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			const p1 = new Promise((resolve, reject) => {
+				setTimeout(() => {
+					resolve('商品-1')
+				}, 1000)
+			})
+			const p2 = new Promise((resolve, reject) => {
+				setTimeout(() => {
+					reject('出错了')
+				}, 1000)
+			})
+			async function get_1() {
+				const result = await Promise.allSettled([p1, p2])
+				console.log(result)
+			} //参数是一个promise对象数组 结果一直为执行态
+			get_1()
+
+			//all方法
+			const res = Promise.all([p1, p2]) //有一个出错那就错 失败的值就是数组里那个失败的值
+			console.log(res)
+		</script>
+	</body>
+</html>

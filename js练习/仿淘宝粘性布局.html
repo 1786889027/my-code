@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 90%;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .nav {
+            height: 100px;
+            background-color: pink;
+        }
+
+        .banner {
+            height: 200px;
+            background-color: purple;
+        }
+
+        .ad {
+            position: absolute;
+            top: 400px;
+            right: 0;
+            height: 200px;
+            width: 100px;
+            background-color: #616161;
+        }
+
+        .main {
+            height: 1200px;
+            background-color: skyblue;
+        }
+
+        .flooter {
+            height: 200px;
+            background-color: goldenrod;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">nav</div>
+    <div class="banner">banner</div>
+    <div class="ad"></div>
+    <div class="main">main</div>
+    <div class="flooter">flooter</div>
+    <script>
+        var ad = document.querySelector('.ad')
+        var main = document.querySelector('.main')
+        var mainTop = main.offsetTop;
+        var sTop = ad.offsetTop - mainTop
+        document.addEventListener('scroll', function () {
+            if (pageYOffset >= mainTop) {
+                ad.style.position = 'fixed'
+                ad.style.top = sTop + 'px'
+                ad.innerHTML = '返回顶部'
+            } else {
+                ad.style.position = 'absolute'
+                ad.style.top = '400px'
+                ad.innerHTML = ''
+            }
+        })
+        ad.addEventListener('click', function () {
+            // scroll(0, 0)
+            //慢慢滚动 即动画滚动
+            animate(window, 0)
+        })
+        function animate(obj, target, callback) {
+            clearInterval(obj.timer)
+            obj.timer = setInterval(function () {
+                var step = (target - obj.pageYOffset) / 10
+                var step = 0 ? Math.ceil(step) : Math.floor(step)
+                if (obj.pageYOffset == target) {
+                    clearInterval(obj.timer)
+                    callback && callback();
+                }
+                obj.scroll(0, pageYOffset + step)
+            }, 15);
+        }
+
+        //兼容性写法
+        // function getScroll() {
+        //     return {
+        //         left: pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0,
+        //         top: pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+        //     };
+        // }
+    </script>
+</body>
+
+</html>

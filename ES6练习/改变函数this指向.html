@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //ES6提供了this指向得三种方法 call()  apply() bind()
+        var o = {
+            name: 'andy'
+        }
+
+        function fn() {
+            console.log(this);
+        }
+        fn.apply(o) //第二个参数必须是数组形式
+        //apply主要应用 数学方面
+        var arr = [66, 88, 55, 88]
+        var max = Math.max.apply(null, arr)
+        console.log(max);
+
+        //bind方法不会调用函数 只是改变this指向 返回由指定得this值和初始化参数改造的原函数拷贝 也就是返回一个新函数 一般永于事件绑定改变this
+        var f = fn.bind(o)
+        f();
+        //call经常做继承 apply跟数组有关系 bind不调用数组 比如定时器得指向
+    </script>
+</body>
+
+</html>

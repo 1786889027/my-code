@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>123</div>
+    <ul>
+        <li>abc</li>
+        <li>abc</li>
+        <li>abc</li>
+    </ul>
+    <script>
+        var div = document.querySelector('div')
+        var ul = document.querySelector('ul')
+        div.addEventListener('click', function (e) {
+            console.log(e); //兼容性问题 ie 6 7 8 用window.event
+            console.log(window.event);
+            e = e || window.event //兼容性处理
+            console.log(e.target); //e.target返回的触发的事件对象  this是绑定的事件对象 跟currentTarget属性很像
+            console.log(this);
+        })
+        ul.addEventListener('click', function (e) {
+            e = e.target || e.srcElement //兼容性写法
+            console.log(e); //实际是li触发的
+            console.log(this);
+        })
+    </script>
+</body>
+
+</html>

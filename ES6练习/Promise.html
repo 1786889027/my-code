@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //promise是es6引入的解决异步编程的方案 语法上是一个构造函数
+        // 用来封装异步操作并可以获取其成功或者失败的结果
+        const p = new Promise(function (resolve, reject) {
+            //模仿异步
+            setTimeout(() => {
+                let data = '后台传来的值'
+                resolve(data)
+            }, 1000);
+        }) //接受一个参数 参数是个函数
+        // p有三个状态 刚开始时的初始化状态 调用成功后变为solve状态 失败变为失败状态 
+        // 根据状态然后就执行promise的不同then方法了
+        p.then(function (value) { //这是resolve调用成功 成功状态执行
+            console.log(value);
+        }, function (reason) { //这是resolve调用失败 失败状态执行
+            console.log(reason);
+        })
+
+
+
+        //对下面使用promise进行封装
+        const promise = new Promise((resolve, reject) => {
+            // 接口地址:https://api.apiopen.top/getJoke
+            // 原生ajax请求
+            // 1.创建对象
+            const xhr = new XMLHttpRequest();
+            // 2.初始化
+            xhr.open('GET', 'https://api.apiopen.top/getJoke')
+            // 3.发送请求
+            xhr.send()
+            // 4. 绑定事件 处理相应结果
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    //判断响应状态码 200-299
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        resolve(xhr.response);
+                    } else {
+                        reject(xhr.status)
+                    }
+                }
+            }
+        })
+        //指定回调
+        promise.then((value) => {
+            console.log(value);
+        }, (reason) => {
+            console.log(reason);
+        })
+    </script>
+
+</body>
+
+</html>

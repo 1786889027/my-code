@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+
+	<body>
+		<script>
+			//声明一个字符串
+			let str = '<a href="https://www.atguigu.com">尚硅谷</a>'
+
+			//提取标签文本于url
+			const reg = /<a href="(?<url>.*)">(?<text>.*)<\/a>/
+			const result = reg.exec(str) //通过group分组出来了url 和text
+			console.log(result)
+
+			//正向断言
+			let str2 = 'JS5201314你知道吗555啦啦啦啦'
+			// 要提起555 可由后面的啦啦啦来确定
+			const regx = /\d+(?=啦)/
+			console.log(regx.exec(str2))
+
+			//反向断言
+			const regxe = /(?<=吗)\d+/
+			console.log(regxe.exec(str2))
+
+			//dot . 元字符 除换行符以外的任意单个字符
+			let str3 = `
+        <ul>
+            <li>
+                <a>肖申克的救赎</a>
+                <p>上映日期:1994-09-10</p>
+                </li>
+            <li>
+                <a>阿甘正传</a>
+                <p>上映日期:1994-07--06</p>
+            </li>
+        </ul>`
+			const reg2 = /<li>\s+<a>(.*?)<\/a>\s+<p>(.*?)<\/p>/
+			const newReg = /<li>.*?<a>(.*?)<\/a>.*?<p>(.*?)<\/p>/gs //s是统配空格 g是全局  加了s .就能匹配任意字符
+			// console.log(reg2.exec(str3))
+			let data
+			// while ((data = newReg.exec(str3))) {
+			// 	console.log(data)
+			// }
+			//es11新增了一个string.matchAll方法 不用while循环了
+			// console.log(str3.matchAll(newReg)) //返回一个可迭代的对象
+			for (let v of str3.matchAll(newReg)) {
+				//数据批量处理
+				console.log(v)
+			}
+		</script>
+	</body>
+</html>
