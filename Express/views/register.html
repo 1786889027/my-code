@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form method="POST" action="/register">
+        <label for="username">用户名</label> <input type="text" name="username" id="username">
+        <label for="pwd">密码</label> <input type="password" name="pwd" id="pwd">
+        <input type="submit">
+    </form>
+    num1:{{num1 | timestamp}}
+    num2:{{num2}}
+    name:{{user.name}},
+    age:{{user.age}},
+    email:{{user['email']}}
+    <ul>
+        {{each books}}
+        <li>{{$index}}:{{$value}}</li>
+        {{/each}}
+    </ul>
+</body>
+
+</html>

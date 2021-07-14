@@ -14,10 +14,10 @@
         var btn = document.querySelector('button')
         btn.addEventListener('click', () => {
             location.assign('http://www.baidu.com') //跟href一样重定向
-            location.replace('http://www.baidu.com')//替换当前页面，不记录历史 不能后退
+            location.replace('http://www.baidu.com') //替换当前页面，不记录历史 不能后退
             location.reload() //相当于点了刷新 参数如果true 则表示强制刷新
+            console.log(location.search);
         })
-
     </script>
 </body>
 
