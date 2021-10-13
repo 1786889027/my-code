@@ -23,7 +23,7 @@
 
 //接下来解构赋值形式
 const m1 = require('./m1.js')
-const path = require()
+const path = require('path')
 // import { school, teach } from './m1.js'
 // import { school as guigu, findJob } from './m2.js' //由于school已经声明 这里用as 后面的guigu 作为别名
 // import { default as m3 } from './m3.js' //默认暴露写法  不能用default 而是用as 后面的m3作为别名

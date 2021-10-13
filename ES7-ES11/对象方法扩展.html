@@ -29,12 +29,16 @@
         //对象属性的描述对象
         console.log(Object.getOwnPropertyDescriptors(school));
 
-        const obj = Object.create(null, { //传入null 则为此对象的原型对象   Object.getOwnPropertyDescriptors读取的是后面的描述对象
-            value: '尚硅谷',
-            Writable: true,
-            configurable: true,
-            enumerable: true
+        const obj = Object.create(null, {
+            //传入null 则为此对象的原型对象   Object.getOwnPropertyDescriptors读取的是后面的描述对象
+            'name': {
+                value: '尚硅谷',
+                Writable: true,
+                configurable: true,
+                enumerable: true
+            }
         })
+        console.log(obj);
     </script>
 </body>
 

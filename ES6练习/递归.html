@@ -47,7 +47,8 @@
                     //得到里层数据可以用递归
                     //里面有goods数组 且长度不为0
                 } else if (item.goods && item.goods.length > 0) {
-                    o = getId(item.goods, id) //这里一定要加 o = 因为这个递归要返回值也等于o 否则就不会等于 或者你o直接全局变量 这样每次
+                    o = getId(item.goods, id)
+                    //这里一定要加 o = 因为这个递归要返回值也等于o 否则就不会等于 或者你o直接全局变量 这样每次
                     //递归都会覆盖 而不是递归新var 一个 o
                 }
             });
