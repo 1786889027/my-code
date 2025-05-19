@@ -61,7 +61,7 @@ Promise.prototype.then = function (onResolved, onRejected) {
 				callback(onRejected)
 			})
 		}
-		if (self.PromiseStatus == 'Pending') {
+		if (self.PromiseStatus == 'pending') {
 			self.callbacks.push({
 				onResolved: function () {
 					callback(onResolved)
