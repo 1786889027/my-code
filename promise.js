@@ -1,7 +1,7 @@
 function Promise(execute) {
 	this.PromiseStatus = 'pending'
 	this.PromiseResult = null
-	this.this.callbacks = []
+	this.callbacks = []
 	let self = this
 	function resolve(value) {
 		if (self.PromiseStatus !== 'pending') return
@@ -29,7 +29,7 @@ function Promise(execute) {
 		reject(e)
 	}
 }
-Promise.prototype.this = function (onResolved, onRejected) {
+Promise.prototype.then = function (onResolved, onRejected) {
 	let self = this
 	return new Promise((resolve, reject) => {
 		function callback(type) {
